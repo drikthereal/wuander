@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>wuander</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet">
+    <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
     <style>
         html, body {
             height: 100%;
+            overflow: hidden;
         }
         body {
             font-family: 'Roboto', sans-serif;
@@ -26,8 +28,10 @@
             user-select: none;
         }
 
-        .logo:hover .logo--brand {
-            transform: rotateX(35deg);
+        .logo.is-open .logo--brand {
+            transform: rotateX(30deg);
+            pointer-events: none;
+            cursor: default;
         }
 
         .logo--brand {
@@ -43,9 +47,10 @@
             display: inline-block;
             transition: transform ease-in .2s;
             transform-origin: top;
-            cursor: default;
+            will-change: transform;
             position: relative;
             background-color: #ffffff;
+            cursor: pointer;
         }
 
         .logo--brand-u {
@@ -54,21 +59,89 @@
         }
 
         .logo--inside {
-            background-color: rgba(0, 0, 0, .8);
+            background-color: rgba(0, 0, 0, .7);
             position: absolute;
             top: 0;
             right: 0;
             bottom: 0;
             left: 0;
         }
+
+        .confetti {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
     </style>
 </head>
 <body>
 
-    <div class="logo">
-        <div class="logo--inside"></div>
+    <div class="logo" onclick="surprise(this)">
+        <div class="logo--inside">
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+        </div>
         <div class="logo--brand">w<span class="logo--brand-u">u</span>ander</div>
     </div>
+
+    <script>
+        var ANIMATION_DURATION = 1000;
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+        function getRandomColour() {
+            var colours = ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'];
+            return colours[getRandomInt(0, colours.length - 1)];
+        }
+        function animate(element, x) {
+            var divStyler = popmotion.styler(element);
+            var x = getRandomInt(-500, 500);
+            var y = getRandomInt(0, 200);
+            popmotion.keyframes({
+                values: [
+                    { x: 0, y: 0, rotateY: 0, rotateX: 0, background: getRandomColour(), opacity: 1 },
+                    { x: x, y: y, rotateY: getRandomInt(0, 360), rotateX: getRandomInt(0, 360), background: getRandomColour(), opacity: 1 },
+                    { x: x * 1.5, y: y * 1.5, rotateY: getRandomInt(0, 360), rotateX: getRandomInt(0, 360), background: '', opacity: 0 }
+                ],
+                duration: ANIMATION_DURATION,
+                easings: popmotion.easing.linear,
+                times: [0, 0.4, 1]
+            }).start(divStyler.set);
+        }
+        var confetti = document.querySelectorAll('.confetti');
+        var isInProgress = false;
+
+        function surprise(el) {
+            if (isInProgress) return;
+            isInProgress = true;
+            el.classList.add('is-open');
+            setTimeout(function() {
+                [].forEach.call(confetti, function(el, i) {
+                    var x = i < confetti.length / 2 ? -1 : 1;
+                    animate(el, x);
+                });
+            }, 100);
+            setTimeout(function() {
+                el.classList.remove('is-open');
+                isInProgress = false;
+            }, ANIMATION_DURATION)
+        }
+    </script>
     
 </body>
 </html>
