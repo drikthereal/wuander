@@ -29,20 +29,25 @@
             line-height: 1;
             color: #ffffff;
             text-rendering: geometricPrecision;
-            outline: .1em solid white;
+            outline: .1em solid rgba(255, 255, 255, 1);
             margin: 0;
             padding: .8em .6em;
-            display: inline-flex;
         }
 
-        .logo__u {
+        .logo--brand {
+            font-size: 1em;
+        }
+
+        .logo--brand-u {
             color: #bd3734;
         }
     </style>
 </head>
 <body>
 
-    <h1 class="logo">w<span class="logo__u">u</span>ander</h1>
+    <div class="logo">
+        <div class="logo--brand">w<span class="logo--brand-u">u</span>ander</div>
+    </div>
     
 </body>
 </html>
