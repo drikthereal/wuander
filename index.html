@@ -18,8 +18,19 @@
             display: grid;
             margin: 0;
             place-items: center center;
+            perspective: 800px;
         }
+
         .logo {
+            position: relative;
+            user-select: none;
+        }
+
+        .logo:hover .logo--brand {
+            transform: rotateX(35deg);
+        }
+
+        .logo--brand {
             font-family: 'Open Sans', sans-serif;
             text-transform: uppercase;
             font-size: 3em;
@@ -30,21 +41,32 @@
             margin: 0;
             padding: .8em .6em;
             display: inline-block;
-        }
-
-        .logo--brand {
-            font-size: 1em;
+            transition: transform ease-in .2s;
+            transform-origin: top;
+            cursor: default;
+            position: relative;
+            background-color: #ffffff;
         }
 
         .logo--brand-u {
             display: inline-block;
             transform: translate(.05em, -0.1em);
         }
+
+        .logo--inside {
+            background-color: rgba(0, 0, 0, .8);
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
     </style>
 </head>
 <body>
 
     <div class="logo">
+        <div class="logo--inside"></div>
         <div class="logo--brand">w<span class="logo--brand-u">u</span>ander</div>
     </div>
     
