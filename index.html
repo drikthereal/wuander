@@ -109,7 +109,7 @@
             var colours = ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'];
             return colours[getRandomInt(0, colours.length - 1)];
         }
-        function animate(element, x) {
+        function animate(element) {
             var divStyler = popmotion.styler(element);
             var x = getRandomInt(-500, 500);
             var y = getRandomInt(0, 200);
@@ -132,9 +132,8 @@
             isInProgress = true;
             el.classList.add('is-open');
             setTimeout(function() {
-                [].forEach.call(confetti, function(el, i) {
-                    var x = i < confetti.length / 2 ? -1 : 1;
-                    animate(el, x);
+                [].forEach.call(confetti, function(el) {
+                    animate(el);
                 });
             }, 100);
             setTimeout(function() {
