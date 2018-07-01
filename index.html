@@ -78,17 +78,29 @@
             left: 0;
             margin: auto;
         }
+        .confetti.radius {
+            border-radius: 50%;
+        }
+        .confetti.rectangle {
+            width: 10px;
+            height: 30px;
+        }
     </style>
 </head>
 <body>
 
     <div class="logo" onclick="surprise(this)">
         <div class="logo--inside">
-            <div class="confetti"></div>
-            <div class="confetti"></div>
-            <div class="confetti"></div>
-            <div class="confetti"></div>
-            <div class="confetti"></div>
+            <div class="confetti radius"></div>
+            <div class="confetti radius"></div>
+            <div class="confetti radius"></div>
+            <div class="confetti radius"></div>
+            <div class="confetti radius"></div>
+            <div class="confetti rectangle"></div>
+            <div class="confetti rectangle"></div>
+            <div class="confetti rectangle"></div>
+            <div class="confetti rectangle"></div>
+            <div class="confetti rectangle"></div>
             <div class="confetti"></div>
             <div class="confetti"></div>
             <div class="confetti"></div>
@@ -99,7 +111,7 @@
     </div>
 
     <script>
-        var ANIMATION_DURATION = 1000;
+        var ANIMATION_DURATION = 1200;
         function getRandomInt(min, max) {
             min = Math.ceil(min);
             max = Math.floor(max);
@@ -111,8 +123,8 @@
         }
         function animate(element) {
             var divStyler = popmotion.styler(element);
-            var x = getRandomInt(-500, 500);
-            var y = getRandomInt(0, 200);
+            var x = getRandomInt(-300, 300);
+            var y = getRandomInt(30, 300);
             popmotion.keyframes({
                 values: [
                     { x: 0, y: 0, rotateY: 0, rotateX: 0, background: getRandomColour(), opacity: 1 },
@@ -121,7 +133,7 @@
                 ],
                 duration: ANIMATION_DURATION,
                 easings: popmotion.easing.linear,
-                times: [0, 0.4, 1]
+                times: [0, 0.5, 1]
             }).start(divStyler.set);
         }
         var confetti = document.querySelectorAll('.confetti');
