@@ -96,13 +96,10 @@
             <div class="confetti radius"></div>
             <div class="confetti radius"></div>
             <div class="confetti radius"></div>
-            <div class="confetti radius"></div>
             <div class="confetti rectangle"></div>
             <div class="confetti rectangle"></div>
             <div class="confetti rectangle"></div>
             <div class="confetti rectangle"></div>
-            <div class="confetti rectangle"></div>
-            <div class="confetti"></div>
             <div class="confetti"></div>
             <div class="confetti"></div>
             <div class="confetti"></div>
@@ -112,14 +109,12 @@
     </div>
 
     <script>
-        var ANIMATION_DURATION = 1200;
+        var ANIMATION_DURATION = 1300;
         var stylerCache = {};
         var confetti = document.querySelectorAll('.confetti');
         var isInProgress = false;
 
         function getRandomInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
             return Math.floor(Math.random() * (max - min)) + min;
         }
         function getRandomColour() {
@@ -133,12 +128,12 @@
             popmotion.keyframes({
                 values: [
                     { x: 0, y: 0, rotateY: 0, rotateX: 0, background: getRandomColour(), opacity: 1 },
-                    { x: x, y: y, rotateY: getRandomInt(0, 360), rotateX: getRandomInt(0, 360), background: getRandomColour(), opacity: 1 },
-                    { x: x * 1.5, y: y * 1.5, background: '', opacity: 0 }
+                    { x: x, y: y, rotateY: getRandomInt(-180, 180), rotateX: getRandomInt(-180, 180), background: getRandomColour(), opacity: 1 },
+                    { x: x * 1.5, y: y * 2, background: '', opacity: 0 }
                 ],
                 duration: ANIMATION_DURATION,
                 easings: popmotion.easing.linear,
-                times: [0, 0.5, 1]
+                times: [0, 0.4, 1]
             }).start(stylerCache[i].set);
         }
 
