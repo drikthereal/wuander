@@ -113,6 +113,10 @@
 
     <script>
         var ANIMATION_DURATION = 1200;
+        var stylerCache = {};
+        var confetti = document.querySelectorAll('.confetti');
+        var isInProgress = false;
+
         function getRandomInt(min, max) {
             min = Math.ceil(min);
             max = Math.floor(max);
@@ -122,8 +126,8 @@
             var colours = ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'];
             return colours[getRandomInt(0, colours.length - 1)];
         }
-        function animate(element) {
-            var divStyler = popmotion.styler(element);
+        function animate(element, i) {
+            stylerCache[i] = stylerCache[i] || popmotion.styler(element);
             var x = getRandomInt(-300, 300);
             var y = getRandomInt(80, 250);
             popmotion.keyframes({
@@ -135,18 +139,16 @@
                 duration: ANIMATION_DURATION,
                 easings: popmotion.easing.linear,
                 times: [0, 0.5, 1]
-            }).start(divStyler.set);
+            }).start(stylerCache[i].set);
         }
-        var confetti = document.querySelectorAll('.confetti');
-        var isInProgress = false;
 
         function surprise(el) {
             if (isInProgress) return;
             isInProgress = true;
             el.classList.add('is-open');
             setTimeout(function() {
-                [].forEach.call(confetti, function(el) {
-                    animate(el);
+                [].forEach.call(confetti, function(el, i) {
+                    animate(el, i);
                 });
             }, 100);
             setTimeout(function() {
