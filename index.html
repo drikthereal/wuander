@@ -80,7 +80,7 @@
             bottom: 0;
             left: 0;
             margin: auto;
-            will-change: transform;
+            will-change: transform, opacity;
         }
         .confetti.radius {
             border-radius: 50%;
@@ -128,10 +128,11 @@
             stylerCache[i] = stylerCache[i] || popmotion.styler(element);
             var x = getRandomInt(-300, 300);
             var y = getRandomInt(80, 250);
+            var rndBg = getRandomColour();
             popmotion.keyframes({
                 values: [
-                    { x: 0, y: 0, rotateY: 0, rotateX: 0, background: getRandomColour(), opacity: 1 },
-                    { x: x, y: y, rotateY: getRandomInt(-180, 180), rotateX: getRandomInt(-180, 180), background: getRandomColour(), opacity: 1 },
+                    { x: 0, y: 0, rotateY: 0, rotateX: 0, background: rndBg, opacity: 1 },
+                    { x: x, y: y, rotateY: getRandomInt(-180, 180), rotateX: getRandomInt(-180, 180), background: rndBg, opacity: 1 },
                     { x: x * 1.5, y: y * 2, background: '', opacity: 0 }
                 ],
                 duration: ANIMATION_DURATION,
