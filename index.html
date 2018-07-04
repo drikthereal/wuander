@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,11 +18,17 @@
         body {
             font-family: 'Roboto', sans-serif;
             font-weight: 400;
-            font-size: 1em;
+            font-size: 100%;
             background-color: #ffffff;
             display: grid;
             margin: 0;
             place-items: center center;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                font-size: 12px;
+            }
         }
 
         .logo {
@@ -40,14 +47,13 @@
         .logo--brand {
             font-family: 'Open Sans', sans-serif;
             text-transform: uppercase;
-            font-size: 3em;
+            font-size: 3.2em;
             line-height: 1;
             color: #be352f;
             text-rendering: geometricPrecision;
             border: .1em solid #be352f;
             margin: 0;
-            /* padding: .8em .6em; */
-            /* display: inline-block; */
+            padding: .5em;
             transition: transform ease-in .2s;
             transform-origin: top;
             will-change: transform;
@@ -56,14 +62,10 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            /* width: 300px;
-            height: 100px; */
+            width: 6em;
+            height: 2em;
+            max-width: 80vw;
             justify-content: space-between;
-            padding: 10px;
-        }
-
-        .logo--brand-letter {
-            /* display: inline-block; */
         }
 
         .logo--brand-letter-u {
