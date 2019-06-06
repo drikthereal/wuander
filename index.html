@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="icon" type="image/png" href="https://wuander.com/icon.png" sizes="32x32">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet">
-    <script src="./popmotion.global.min.js"></script>
+    <script src="https://wuander.com/popmotion.global.min.js"></script>
     <style>
         html, body {
             height: 100%;
@@ -17,11 +18,17 @@
         body {
             font-family: 'Roboto', sans-serif;
             font-weight: 400;
-            font-size: 1em;
+            font-size: 100%;
             background-color: #ffffff;
             display: grid;
             margin: 0;
             place-items: center center;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                font-size: 12px;
+            }
         }
 
         .logo {
@@ -40,24 +47,28 @@
         .logo--brand {
             font-family: 'Open Sans', sans-serif;
             text-transform: uppercase;
-            font-size: 3em;
+            font-size: 3.2em;
             line-height: 1;
             color: #be352f;
             text-rendering: geometricPrecision;
             border: .1em solid #be352f;
             margin: 0;
-            padding: .8em .6em;
-            display: inline-block;
+            padding: .5em;
             transition: transform ease-in .2s;
             transform-origin: top;
             will-change: transform;
             position: relative;
             background-color: #ffffff;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            width: 6em;
+            height: 2em;
+            max-width: 80vw;
+            justify-content: space-between;
         }
 
-        .logo--brand-u {
-            display: inline-block;
+        .logo--brand-letter-u {
             transform: translate(.05em, -0.1em);
         }
 
@@ -108,7 +119,16 @@
             <div class="confetti"></div>
             <div class="confetti"></div>
         </div>
-        <div class="logo--brand">w<span class="logo--brand-u">u</span>ander</div>
+
+        <div class="logo--brand">
+            <span class="logo--brand-letter">w</span>
+            <span class="logo--brand-letter logo--brand-letter-u">u</span>
+            <span class="logo--brand-letter">a</span>
+            <span class="logo--brand-letter">n</span>
+            <span class="logo--brand-letter">d</span>
+            <span class="logo--brand-letter">e</span>
+            <span class="logo--brand-letter">r</span>
+        </div>
     </div>
 
     <script>
